@@ -4,7 +4,6 @@ import { getAllArticlesAndMinifyForCache, getArticleFromCache } from '../lib/dev
 
 import Nav from '../components/nav'
 
-
 // This file is used for caching the article ID and local slug
 const cacheFile = '.dev-to-cache.json'; // Add this file to the .gitignore
 
