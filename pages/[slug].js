@@ -8,7 +8,7 @@ import Nav from '../components/nav'
 const cacheFile = '.dev-to-cache.json'; // Add this file to the .gitignore
 
 const ArticlePage = ({ article }) => (
-    <div>
+    <div className="bg-gray-50">
         <Nav />
         <main>
             <div className="mb-4 md:mb-0 w-full max-w-screen-md mx-auto relative h-96">

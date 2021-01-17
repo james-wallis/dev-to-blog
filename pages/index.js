@@ -4,7 +4,7 @@ import { getAllArticles, convertCanonicalURLToRelative } from '../lib/devto';
 
 export default function IndexPage({ articles }) {
   return (
-    <div>
+    <div className="bg-gray-50">
       <Nav />
       <div className="py-20 flex flex-col justify-center items-center">
         <h1 className="text-3xl">Welcome to my blog 👋</h1>
