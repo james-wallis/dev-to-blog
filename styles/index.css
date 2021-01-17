@@ -21,3 +21,43 @@ body {
 /* Stop purging. */
 
 /* Your own custom utilities */
+
+.article h1,
+.article h2,
+.article h3 {
+  @apply text-2xl mb-4 mt-6 font-medium;
+}
+
+.article p {
+  @apply my-2;
+}
+
+.article ol,
+.article ul {
+  @apply ml-8;
+}
+
+.article ol {
+  @apply list-decimal;
+}
+
+.article ul {
+  @apply list-disc;
+}
+
+.article img {
+  @apply mx-auto my-8 shadow-md;
+}
+
+.article code {
+  @apply bg-white p-1;
+}
+
+.article a {
+  @apply underline;
+}
+
+/* Hide some stuff that I didn't style */
+.article .highlight__panel {
+  @apply hidden;
+}
