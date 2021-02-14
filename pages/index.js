@@ -20,7 +20,7 @@ export default function IndexPage({ articles }) {
                               {article.readable_publish_date}
                           </span>
                           <span className="px-2 py-1 bg-gray-600 text-gray-100 font-bold rounded hover:bg-gray-500">
-                              {article.tags}
+                              {article.tag_list.join(', ')}
                           </span>
                       </div>
                       <div className="mt-2">

@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { getAllArticlesAndMinifyForCache, getArticleFromCache } from '../lib/devto';
+import { getAllArticles, getArticleFromCache } from '../lib/devto';
 
 import Nav from '../components/nav'
 
@@ -16,7 +16,7 @@ const ArticlePage = ({ article }) => (
                 {article.cover_image && <img src={article.cover_image} className="absolute left-0 top-0 w-full h-full z-0 object-cover" />}
                 <div className="p-4 absolute bottom-0 left-0 z-20">
                     <span className="px-4 py-1 bg-black text-gray-200 items-center justify-center mb-2">
-                        {article.tag_list}
+                        {article.tag_list.join(', ')}
                     </span>
                 <h2 className="text-4xl font-semibold text-gray-100 leading-tight">
                     {article.title}
@@ -33,7 +33,7 @@ const ArticlePage = ({ article }) => (
                 <div className="flex justify-center text-md my-4 italic text-gray-700 font-bold hover:underline">
                     <a href={article.url} target="_blank">Also posted on Dev.to</a>
                 </div>
-                <div className="article" dangerouslySetInnerHTML={{ __html: article.body_html }} />
+                <div className="article" dangerouslySetInnerHTML={{ __html: article.html }} />
                 <div className="flex justify-center text-md mt-10 mb-32 italic text-gray-700 font-bold hover:underline">
                     <a href={article.url} target="_blank">Like this article? React or comment on Dev.to</a>
                 </div>
@@ -44,16 +44,16 @@ const ArticlePage = ({ article }) => (
 
 // This function gets called at build time
 export async function getStaticPaths() {
-    // Get minified articles (just article ID and local slug) and cache them for use in getStaticProps
-    const minifiedArticles = await getAllArticlesAndMinifyForCache();
+    // Get the published articles and cache them for use in getStaticProps
+    const articles = await getAllArticles();
 
-    // Save minified article data to cache file
-    fs.writeFileSync(path.join(process.cwd(), cacheFile), JSON.stringify(minifiedArticles));
+    // Save article data to cache file
+    fs.writeFileSync(path.join(process.cwd(), cacheFile), JSON.stringify(articles));
 
     // Get the paths we want to pre-render based on posts
-    const paths = minifiedArticles.map(({ slug }) => {
+    const paths = articles.map(({ localSlug }) => {
         return {
-            params: { slug },
+            params: { slug: localSlug },
         }
     })
 
@@ -65,7 +65,7 @@ export async function getStaticPaths() {
 // This also gets called at build time
 export async function getStaticProps({ params }) {
     // Read cache and parse to object
-    const cacheContents = fs.readFileSync(path.join(process.cwd(), cacheFile));
+    const cacheContents = fs.readFileSync(path.join(process.cwd(), cacheFile), 'utf-8');
     const cache = JSON.parse(cacheContents);
 
     // Using the cache, fetch the article from Dev.to
