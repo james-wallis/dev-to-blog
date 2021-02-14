@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import moment from 'moment';
 import Nav from '../components/nav';
 import { getAllArticles, convertCanonicalURLToRelative } from '../lib/devto';
 
@@ -17,7 +18,7 @@ export default function IndexPage({ articles }) {
                   <div className="lg:w-2/5 md:w-3/5 w-4/5 px-10 py-6 bg-white rounded-lg shadow-md">
                       <div className="flex justify-between items-center">
                           <span className="font-light text-gray-600">
-                              {article.readable_publish_date}
+                              {moment(article.published_timestamp).format('Do MMMM YYYY')}
                           </span>
                           <span className="px-2 py-1 bg-gray-600 text-gray-100 font-bold rounded hover:bg-gray-500">
                               {article.tag_list.join(', ')}

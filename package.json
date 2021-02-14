@@ -7,22 +7,22 @@
     "start": "next start"
   },
   "dependencies": {
-    "axios": "^0.21.1",
-    "gray-matter": "^4.0.2",
+    "moment": "^2.29.1",
     "next": "latest",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "remark-gfm": "^1.0.0",
-    "remark-highlight.js": "^6.0.0",
-    "remark-html": "^13.0.1",
-    "remark-parse": "^9.0.0",
-    "strip-html-comments": "^1.0.0",
-    "unified": "^9.2.0"
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "autoprefixer": "10.0.2",
     "postcss": "8.1.7",
-    "tailwindcss": "^2.0.2"
+    "tailwindcss": "^2.0.2",
+    "axios": "^0.21.1",
+    "gray-matter": "^4.0.2",
+    "remark-gfm": "^1.0.0",
+    "remark-highlight.js": "^6.0.0",
+    "remark-html": "^13.0.1",
+    "remark-parse": "^9.0.0",
+    "unified": "^9.2.0"
   },
   "license": "MIT"
 }

@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import moment from 'moment';
 import { getAllArticles, getArticleFromCache } from '../lib/devto';
 
 import Nav from '../components/nav'
@@ -23,7 +24,7 @@ const ArticlePage = ({ article }) => (
                 </h2>
                 <div className="flex mt-3">
                     <p className="font-semibold text-gray-200 text-sm">
-                        {article.readable_publish_date}
+                        {moment(article.published_timestamp).format('Do MMMM YYYY')}
                     </p>
                 </div>
                 </div>
